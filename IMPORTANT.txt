@@ -1,0 +1,11 @@
+IMPORTANT!
+Backup your device information for the NVRAM Writer because the firmware will erase the nand flash fully.
+
+Example of my device information
+IMEI          : 864434032673200
+SERIAL NUMBER : 7CP7S18418004037
+LAN MAC ADD   : E4:A7:C5:95:43:C0
+WIFI SSID     : B310_543C1
+WIFI PASSWORD : G4Q17Y8TMAN
+
+The IMEI, Serial number, WiFi ssid and WiFi password are found on the bottom part of the modem.
