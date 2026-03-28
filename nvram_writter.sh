@@ -48,8 +48,12 @@ cancel_script() {
     clear
     show_title
     echo -e "${YELLOW}[✓] NVRAM Writing successfully canceled${NC}"
-    echo -e "${GREEN}Have a good day!"
+    say_goodbye
     echo -e "${NC}"
+}
+
+say_goodbye() {
+    echo -e "${GREEN}Have a good day!"
 }
 
 # If the script is cancelled
@@ -155,4 +159,5 @@ rm -f /tmp/modem_ssid.sh 2>/dev/null || true
 print_success "NVRAM Writing Complete"
 echo
 echo -e "${BLUE}Press any key to exit...${NC}"
+say_goodbye
 read -n 1 -s
