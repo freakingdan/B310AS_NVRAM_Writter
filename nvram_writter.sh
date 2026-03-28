@@ -154,6 +154,7 @@ show_title
 print_status "Cleaning up..."
 adb kill-server 2>/dev/null || true
 rm -f /tmp/modem_ssid.sh 2>/dev/null || true
+rm -f modem_ssid.sh 2>/dev/null || true
 
 # Finishing up
 print_success "NVRAM Writing Complete"
