@@ -1,4 +1,4 @@
-# Huawei B310As-938 NVRAM Writer for Terter 
+# Huawei B310As-938 NVRAM Writter for Termux
 
 Unofficial script made by FREAKINGDAN</br>Original script for Windows made by Jerome Laliag
 
