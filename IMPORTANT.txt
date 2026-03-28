@@ -4,7 +4,7 @@ Backup your device information for the NVRAM Writer because the firmware will er
 Example of my device information
 IMEI          : 864434032673200
 SERIAL NUMBER : 7CP7S18418004037
-LAN MAC ADD   : E4:A7:C5:95:43:C0
+LAN MAC ADD   : E4A7C59543C0
 WIFI SSID     : B310_543C1
 WIFI PASSWORD : G4Q17Y8TMAN
 
