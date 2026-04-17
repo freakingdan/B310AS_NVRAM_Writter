@@ -7,7 +7,6 @@
 # =============================================================================
 
 set -e  # Exit on any error
-
 # Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -16,7 +15,6 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Function to print output
-
 show_title() {
     clear
     echo -e "${BLUE}"
@@ -59,7 +57,7 @@ say_goodbye() {
 # If the script is cancelled
 trap 'cancel_script; exit 0' INT
 
-# Clear screen and show titlep
+# Clear screen and show the title
 show_title
 
 # Kill existing adb server
@@ -99,7 +97,7 @@ print_success "Serial Number set successfully"
 
 # Get LAN MAC Address
 read -p "Enter LAN MAC Address (XX:XX:XX:XX:XX:XX): " modemmac
-if [[ ! "$modemmac" =~ ^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$ ]]; then
+if [[ ! "$modemmac" =~ ^([0-9A-Fa-f]{2}){5}[0-9A-Fa-f]{2}$ ]]; then
     print_error "Invalid MAC Address!"
     exit 1
 fi
@@ -108,6 +106,7 @@ print_success "MAC Address set successfully"
 
 # Get WiFi SSID
 read -p "Enter WiFi SSID: " modemwifi
+
 # Create and push SSID script
 cat > modem_ssid.sh << EOF
 #!/bin/sh
@@ -117,13 +116,15 @@ atc AT^SSID=2,\"$modemwifi-2\" > /dev/null 2>&1
 atc AT^SSID=3,\"$modemwifi-3\" > /dev/null 2>&1
 EOF
 
-adb push modem_ssid.sh /tmp/ 2>/dev/null
-adb shell "chmod +x /tmp/ssid.sh && /tmp/ssid.sh '$modemwifi'"
+# Execute the script
+adb push modem_ssid.sh /tmp/ 2> nul
+adb shell "chmod +x /tmp/modem_ssid.sh && sh /tmp/modem_ssid.sh '$modemwifi'"
 print_success "WiFi SSID set successfully"
 
 # Get WiFi Password
 read -sp "Enter WiFi Password: " modempass
 echo
+
 # Set password for all 4 slots
 for i in 0 1 2 3; do
     adb shell "atc AT^WIKEY=$i,\"$modempass\" > /dev/null 2>&1"
@@ -139,14 +140,14 @@ print_success "Configuration saved!"
 echo
 echo -e "${YELLOW}"
 echo "======================================================"
-echo "IMPORTANT: Press and HOLD the reset button on the"
-echo "           back of the modem for 5 seconds to"
+echo "IMPORTANT: Press and hold the RESET button on the"
+echo "           back of the router for 5 seconds to"
 echo "           apply the changes!"
 echo "======================================================"
 echo -e "${NC}"
 adb shell "atc AT^RESET > /dev/null 2>&1"
 
-read -p "Press Enter AFTER completing reset..."
+read -p "Press ENTER after completing the reset..."
 
 show_title
 
